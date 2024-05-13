@@ -129,6 +129,18 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 50px;
+}
+
+.board{
+    display: grid;
+    grid-template-columns: repeat(9, 30px);
+}
+
+.board div{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
 }
 
 footer{
