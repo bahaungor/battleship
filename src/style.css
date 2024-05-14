@@ -123,24 +123,53 @@ header img{
     width: 80px;
 }
 
+.status{
+    text-align: center;
+    padding: 80px;
+    font-size: 1.5rem;
+    margin-bottom: -100px;
+}
+
 main{
     flex: 1;
     padding: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 150px;
+}
+
+.boardContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.5rem;
+}
+
+.fogOfWar{
+    width: 20px;
+    writing-mode: vertical-lr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    padding: 25px;
+    font-size: 1.5rem;
+    background-color: var(--bg3);
+    border-radius: 15px;
+    border: var(--border);
 }
 
 .board{
     display: grid;
-    grid-template-columns: repeat(9, 30px);
+    grid-template-columns: repeat(9, 50px);
 }
 
 .board div{
-    width: 30px;
-    height: 30px;
-    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    border: var(--border)
 }
 
 footer{
@@ -149,4 +178,12 @@ footer{
     font-size: 1.2rem;
     border-top: var(--border);
     background-color: var(--bg2);
+}
+
+.missed{
+    background-color: orange;
+}
+
+.hit{
+    background-color: crimson;
 }

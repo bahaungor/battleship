@@ -25,23 +25,35 @@ export function Gameboard(){
     let board = Array(9).fill().map(() => Array(9).fill(0)); 
 
     function placeShip(x,y,len,alignment){
+        x = parseInt(x)
+        y = parseInt(y)
+        len = parseInt(len)
         if (x>9 || y >9 || x<0 || y<0) return false
 
-        const ship = Ship(len)
-
         if(alignment==='vertical'){
-            if(y+ship.length > 9) return false
+            if(y+len > 9) return false
         } else if (alignment==='horizontal') {
-            if(x+ship.length > 9) return false
+            if(x+len > 9) return false
+        }
+
+        if (board[x][y] != 0) return false
+        if (alignment==='vertical'){
+            for (let i = 0; i <= len-1; i++) {
+                if (board[x+i][y] != 0) return false
+            }
+        } else if (alignment==='horizontal') {
+            for (let i = 0; i <= len-1; i++) {
+                if (board[x][y+i] != 0) return false
+            }
         }
 
         board[x][y] = 'ship'
         if (alignment==='vertical'){
-            for (let i = 1; i <= ship.length; i++) {
+            for (let i = 0; i <= len-1; i++) {
                 board[x+i][y] = 'ship'
             }
         } else if (alignment==='horizontal') {
-            for (let i = 0; i < ship.length; i++) {
+            for (let i = 0; i <= len-1; i++) {
                 board[x][y+i] = 'ship'
             }
         }
@@ -49,6 +61,8 @@ export function Gameboard(){
     }
 
     function receiveAttack(x,y){
+        if (board[x][y] === 'missed' || board[x][y] === 'hit')
+            return
         if(board[x][y] === 'ship'){
             board[x][y] = 'hit'
             return 'hit'
