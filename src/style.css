@@ -188,10 +188,10 @@ footer{
     background-color: orange;
 }
 
-.hit{
-    background-color: crimson;
-}
-
 .ship{
     background-color: var(--gray);
+}
+
+.hit{
+    background-color: crimson;
 }

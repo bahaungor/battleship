@@ -23,7 +23,6 @@ export function Ship(length){
 
 export function Gameboard(){
     let board = Array(9).fill().map(() => Array(9).fill(0)); 
-
     function placeShip(x,y,len,alignment){
         x = parseInt(x)
         y = parseInt(y)
@@ -39,22 +38,24 @@ export function Gameboard(){
         if (board[x][y] != 0) return false
         if (alignment==='vertical'){
             for (let i = 0; i <= len-1; i++) {
-                if (board[x+i][y] != 0) return false
+                if (board[x+i] == undefined || board[x+i][y] == undefined || board[x+i][y] != 0) return false
             }
         } else if (alignment==='horizontal') {
             for (let i = 0; i <= len-1; i++) {
-                if (board[x][y+i] != 0) return false
+                if (board[x] == undefined || board[x][y+i] == undefined || board[x][y+i] != 0) return false
             }
         }
 
         board[x][y] = 'ship'
-        if (alignment==='vertical'){
-            for (let i = 0; i <= len-1; i++) {
-                board[x+i][y] = 'ship'
-            }
-        } else if (alignment==='horizontal') {
-            for (let i = 0; i <= len-1; i++) {
-                board[x][y+i] = 'ship'
+        if (len > 1) {
+            if (alignment==='vertical'){
+                for (let i = 0; i <= len-1; i++) {
+                    board[x+i][y] = 'ship'
+                }
+            } else if (alignment==='horizontal') {
+                for (let i = 0; i <= len-1; i++) {
+                    board[x][y+i] = 'ship'
+                }
             }
         }
         return true

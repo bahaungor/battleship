@@ -16,7 +16,7 @@ const main = document.querySelector('main')
 main.textContent = ""
 const status = document.createElement('div')
 status.classList.add('status')
-status.textContent = 'Place your carier! (Size is 5)'
+// status.textContent = 'Place your carier! (Size is 5)'
 header.parentNode.insertBefore(status, main);
 
 let playerShips = []
@@ -29,6 +29,8 @@ const cruiser = Ship(2)
 const frigate = Ship(1)
 playerShips.push(carier, commander, assault, cruiser, frigate)
 computerShips.push(carier, commander, assault, cruiser, frigate)
+
+let allShipsPlaced = false;
 
 const playerBoardContainer = document.createElement('div')
 playerBoardContainer.classList.add('boardContainer', 'player')
@@ -47,19 +49,42 @@ playerBoard.placeShip(6,6,3,"horizontal")
 // console.log(playerBoard.board)
 const player = document.createElement('div')
 player.classList.add('board')
-playerBoard.board.forEach((item,i) => {
-    item.forEach((cell,j) => {
-        const div = document.createElement('div')
-        div.setAttribute("x",i)
-        div.setAttribute("y",j)
-        // div.textContent = cell
-        if (cell === 'ship') div.classList.add('ship')
-        player.appendChild(div)
+function renderPlayerBoard(){
+    playerBoard.board.forEach((item,i) => {
+        item.forEach((cell,j) => {
+            const div = document.createElement('div')
+            div.setAttribute("x",i)
+            div.setAttribute("y",j)
+            // div.textContent = cell
+            if (cell === 'ship') div.classList.add('ship')
+            player.appendChild(div)
+        })
     })
-})
+}
 
 const computerBoard = Gameboard();
-computerBoard.placeShip(5,5,3,"vertical")
+// computerBoard.placeShip(5,5,3,"vertical")
+
+function placeShips(ships, board){
+    ships.forEach((ship,i) => placeShip(ship,i))
+
+    function placeShip(ship,i){
+        let placed = false;
+        while (!placed) {
+            const x = Math.floor(Math.random() * (8 - 0 + 1)) + 0
+            const y = Math.floor(Math.random() * (8 - 0 + 1)) + 0
+            const alignment = Math.random() < 0.5 ? "vertical" : "horizontal"
+            console.log("x: ", x)
+            console.log("y: ", y)
+            console.log("ship length: ", ship.length)
+            placed = board.placeShip(x, y, ship.length, alignment)
+        }
+    }
+}
+
+placeShips(computerShips, computerBoard)
+placeShips(playerShips, playerBoard)
+renderPlayerBoard()
 // console.log(computerBoard.board)
 const computer = document.createElement('div')
 computer.classList.add('board')
