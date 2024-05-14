@@ -125,18 +125,17 @@ header img{
 
 .status{
     text-align: center;
-    padding: 80px;
+    padding: 70px;
     font-size: 1.5rem;
-    margin-bottom: -100px;
 }
 
 main{
     flex: 1;
-    padding: 40px;
+    padding: 30px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 150px;
+    gap: 100px;
+    flex-wrap: wrap;
 }
 
 .boardContainer{
@@ -147,7 +146,7 @@ main{
     font-size: 1.5rem;
 }
 
-.fogOfWar{
+/* .fogOfWar{
     width: 20px;
     writing-mode: vertical-lr;
     display: flex;
@@ -159,7 +158,7 @@ main{
     background-color: var(--bg3);
     border-radius: 15px;
     border: var(--border);
-}
+} */
 
 .board{
     display: grid;
@@ -170,6 +169,11 @@ main{
     width: 50px;
     height: 50px;
     border: var(--border)
+}
+
+.boardContainer.computer .board div:hover{
+    box-shadow: inset 0 0 100px 100px rgba(103, 114, 209, 0.402);
+    cursor: crosshair;
 }
 
 footer{
@@ -186,4 +190,8 @@ footer{
 
 .hit{
     background-color: crimson;
+}
+
+.ship{
+    background-color: var(--gray);
 }
