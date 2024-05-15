@@ -27,22 +27,57 @@ export function Gameboard(){
         x = parseInt(x)
         y = parseInt(y)
         len = parseInt(len)
+        
         if (x>9 || y >9 || x<0 || y<0) return false
 
         if(alignment==='vertical'){
-            if(y+len > 9) return false
+            if(x+len > 9) {
+                // console.log("y+len is greated than 9")
+                return false
+            }
         } else if (alignment==='horizontal') {
-            if(x+len > 9) return false
+            if(y+len > 9) {
+                // console.log("x+len is greated than 9")
+                return false
+            }
         }
 
         if (board[x][y] != 0) return false
         if (alignment==='vertical'){
             for (let i = 0; i <= len-1; i++) {
-                if (board[x+i] == undefined || board[x+i][y] == undefined || board[x+i][y] != 0) return false
+                // if (board[x+i] == undefined) {
+                //     // console.log("board[x+i] is undefined")
+                //     return false
+                // }
+                // if (board[x+i][y] == undefined) {
+                //     // console.log("board[x+i][y] is undefined")
+                //     return false
+                // }
+                // if (board[x+i][y] != 0) {
+                //     // console.log("board[x+i][y] is not 0")
+                //     return false
+                // }
+                if (board[x+i] == undefined || board[x+i][y] == undefined || board[x+i][y] != 0) {
+                    return false
+                }
             }
         } else if (alignment==='horizontal') {
             for (let i = 0; i <= len-1; i++) {
-                if (board[x] == undefined || board[x][y+i] == undefined || board[x][y+i] != 0) return false
+                // if (board[x] == undefined) {
+                //     // console.log("board[x+i] is undefined")
+                //     return false
+                // }
+                // if (board[x][y+i] == undefined) {
+                //     // console.log("board[x+i][y] is undefined")
+                //     return false
+                // }
+                // if (board[x][y+i] != 0) {
+                //     // console.log("board[x][y+i] is not 0")
+                //     return false
+                // }
+                if (board[x] == undefined || board[x][y+i] == undefined || board[x][y+i] != 0) {
+                    return false
+                }
             }
         }
 
@@ -84,10 +119,4 @@ export function Gameboard(){
     }
 
     return {board, placeShip, receiveAttack, allShipSunk}
-}
-
-export function Player(){
-    board = Gameboard()
-
-    return {board}
 }
